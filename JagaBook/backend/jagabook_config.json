@@ -1,0 +1,345 @@
+// ============================================
+// FILE: backend/package.json
+// Backend Dependencies
+// ============================================
+
+{
+  "name": "jagabook-backend",
+  "version": "1.0.0",
+  "description": "JagaBook Backend API - Photoshoot Location Marketplace",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node src/scripts/seedData.js",
+    "test": "jest --coverage",
+    "lint": "eslint src/"
+  },
+  "keywords": [
+    "photography",
+    "marketplace",
+    "booking",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "dotenv": "^16.3.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.5",
+    "express-validator": "^7.0.1",
+    "express-rate-limit": "^6.10.0",
+    "helmet": "^7.0.0",
+    "compression": "^1.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "jest": "^29.7.0",
+    "eslint": "^8.50.0"
+  }
+}
+
+// ============================================
+// FILE: frontend/package.json
+// Frontend Dependencies
+// ============================================
+
+{
+  "name": "jagabook-frontend",
+  "version": "1.0.0",
+  "description": "JagaBook Frontend - React Application",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
+    "axios": "^1.5.0",
+    "lucide-react": "^0.279.0",
+    "react-hook-form": "^7.46.2",
+    "date-fns": "^2.30.0",
+    "react-toastify": "^9.1.3"
+  },
+  "devDependencies": {
+    "react-scripts": "5.0.1",
+    "tailwindcss": "^3.3.3",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+
+// ============================================
+// FILE: backend/.env.example
+// Environment Variables Template
+// ============================================
+
+# Server Configuration
+PORT=5000
+NODE_ENV=development
+
+# Database
+MONGODB_URI=mongodb://localhost:27017/jagabook
+
+# JWT Configuration
+JWT_SECRET=your_super_secret_jwt_key_change_this_in_production_12345
+JWT_EXPIRE=7d
+
+# Email Service (Gmail example)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASSWORD=your_gmail_app_password
+EMAIL_FROM=noreply@jagabook.com
+
+# File Upload
+MAX_FILE_SIZE=5242880
+UPLOAD_PATH=./uploads
+
+# Payment Gateway (Demo Mode)
+PAYMENT_API_KEY=demo_payment_api_key
+PAYMENT_SECRET=demo_payment_secret_key
+PAYMENT_WEBHOOK_SECRET=demo_webhook_secret
+
+# Frontend URL (for CORS)
+CLIENT_URL=http://localhost:3000
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+
+# ============================================
+// FILE: frontend/.env.example
+// Frontend Environment Variables
+// ============================================
+
+# API Configuration
+REACT_APP_API_URL=http://localhost:5000/api
+
+# Application Info
+REACT_APP_NAME=JagaBook
+REACT_APP_VERSION=1.0.0
+
+# Google Maps (Optional)
+REACT_APP_GOOGLE_MAPS_KEY=your_google_maps_api_key_here
+
+# Analytics (Optional)
+REACT_APP_GA_TRACKING_ID=UA-XXXXXXXXX-X
+
+# ============================================
+// FILE: .gitignore
+// Git Ignore Configuration
+// ============================================
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Build outputs
+/frontend/build
+/backend/dist
+
+# Uploads
+/backend/uploads/*
+!/backend/uploads/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+*.pid
+*.seed
+*.pid.lock
+
+# ============================================
+// FILE: frontend/tailwind.config.js
+// Tailwind CSS Configuration
+// ============================================
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: '#f5f3ff',
+          100: '#ede9fe',
+          200: '#ddd6fe',
+          300: '#c4b5fd',
+          400: '#a78bfa',
+          500: '#8b5cf6',
+          600: '#7c3aed',
+          700: '#6d28d9',
+          800: '#5b21b6',
+          900: '#4c1d95',
+        }
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-up': 'slideUp 0.5s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        }
+      }
+    },
+  },
+  plugins: [],
+}
+
+// ============================================
+// FILE: backend/src/routes/authRoutes.js
+// Authentication Routes
+// ============================================
+
+const express = require('express');
+const router = express.Router();
+const { register, login, getMe } = require('../controllers/authController');
+const { protect } = require('../middleware/auth');
+
+router.post('/register', register);
+router.post('/login', login);
+router.get('/me', protect, getMe);
+
+module.exports = router;
+
+// ============================================
+// FILE: backend/src/routes/placeRoutes.js
+// Place Routes
+// ============================================
+
+const express = require('express');
+const router = express.Router();
+const { protect, authorize } = require('../middleware/auth');
+
+// Place controller functions (to be implemented)
+// router.get('/', getAllPlaces);
+// router.get('/:id', getPlaceById);
+// router.post('/', protect, authorize('provider'), createPlace);
+// router.put('/:id', protect, authorize('provider'), updatePlace);
+// router.delete('/:id', protect, authorize('provider', 'admin'), deletePlace);
+
+// Placeholder route
+router.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Place routes coming soon'
+  });
+});
+
+module.exports = router;
+
+// ============================================
+// FILE: backend/src/routes/bookingRoutes.js
+// Booking Routes
+// ============================================
+
+const express = require('express');
+const router = express.Router();
+const { protect } = require('../middleware/auth');
+
+// Booking controller functions (to be implemented)
+// router.get('/my-bookings', protect, getMyBookings);
+// router.post('/', protect, createBooking);
+// router.put('/:id/confirm', protect, confirmBooking);
+// router.put('/:id/cancel', protect, cancelBooking);
+
+// Placeholder route
+router.get('/', protect, (req, res) => {
+  res.json({
+    success: true,
+    message: 'Booking routes coming soon'
+  });
+});
+
+module.exports = router;
+
+// ============================================
+// FILE: backend/src/routes/reviewRoutes.js
+// Review Routes
+// ============================================
+
+const express = require('express');
+const router = express.Router();
+const { protect } = require('../middleware/auth');
+
+// Review controller functions (to be implemented)
+// router.get('/place/:placeId', getPlaceReviews);
+// router.post('/', protect, createReview);
+// router.put('/:id/respond', protect, respondToReview);
+
+// Placeholder route
+router.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Review routes coming soon'
+  });
+});
+
+module.exports = router;
